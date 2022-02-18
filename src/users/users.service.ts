@@ -1,9 +1,8 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
-import { User } from './entities/user.entity';
+// import { UpdateUserDto } from './dto/update-user.dto';
+// import { User } from './entities/user.entity';
 import { PrismaClient, Prisma } from '@prisma/client';
-import { STATUS_CODES } from 'http';
 
 const prisma = new PrismaClient();
 
@@ -73,7 +72,7 @@ export class UsersService {
     const findAllUsers = await prisma.user.findMany();
     return findAllUsers;
   }
-  //
+
   async findOne(id: number) {
     const findSingleUser = await prisma.user.findUnique({
       where: {

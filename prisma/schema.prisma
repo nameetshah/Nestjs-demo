@@ -11,10 +11,11 @@ datasource db {
 }
 
 model User {
-  id    Int?     @default(autoincrement()) @id
+  id    Int     @id @default(autoincrement())
   name  String?  @db.VarChar(200)
   username String   @unique
   password String?
   email String  @unique
   date String?
+  isLogin Boolean? @default(false)
 }

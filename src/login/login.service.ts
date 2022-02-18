@@ -14,13 +14,18 @@ export class LoginService {
     });
   }
 
-  async updateUser(id: number, isLogin: boolean): Promise<User | undefined> {
+  async updateUser(
+    id: number,
+    isLogin: boolean,
+    login: Date,
+  ): Promise<User | undefined> {
     return prisma.user.update({
       where: {
         id,
       },
       data: {
         isLogin,
+        login,
       },
     });
   }

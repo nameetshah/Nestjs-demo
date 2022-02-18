@@ -1,7 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { LoginService } from '../login/login.service';
 import { JwtService } from '@nestjs/jwt';
-import { use } from 'passport';
 
 @Injectable()
 export class AuthService {
@@ -12,13 +11,12 @@ export class AuthService {
 
   async validation(
     username: string,
-    pass: string,
-    isLogin = true,
+    pass: string
   ): Promise<any> {
     const user = await this.loginService.findOne(username);
     if (user && user.password === pass) {
       const { password, ...result } = user;
-      await this.loginService.updateUser(user.id, isLogin);
+      await this.loginService.updateUser(user.id, true, new Date());
       return result;
     } else {
       throw new BadRequestException(

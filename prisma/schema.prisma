@@ -18,4 +18,5 @@ model User {
   email String  @unique
   date String?
   isLogin Boolean? @default(false)
+  login DateTime?
 }
